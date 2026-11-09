@@ -20,10 +20,6 @@ export const trainingOfferings = [
       'Verification and validation planning',
       'Trade-off analysis and technical reviews',
     ],
-    image: {
-      src: '/images/training/01-systems-engineering.png',
-      alt: 'Systems engineering training diagram: requirements, architecture and verification lifecycle',
-    },
   },
   {
     number: '02',
@@ -36,10 +32,6 @@ export const trainingOfferings = [
       'Interpretation of numerical results',
       'Digital twin concepts for industrial use',
     ],
-    image: {
-      src: '/images/training/02-modelling-simulation.png',
-      alt: 'Modelling and simulation training diagram: model development, execution and analysis',
-    },
   },
   {
     number: '03',
@@ -52,10 +44,6 @@ export const trainingOfferings = [
       'Human oversight and validation strategies',
       'Risks, limitations and responsible adoption',
     ],
-    image: {
-      src: '/images/training/03-ai-engineering-workflows.png',
-      alt: 'AI for engineering workflows training diagram with validation and oversight',
-    },
   },
   {
     number: '04',
@@ -68,10 +56,6 @@ export const trainingOfferings = [
       'Membrane and electrochemical technology pathways',
       'From laboratory insight to industrial application',
     ],
-    image: {
-      src: '/images/training/04-materials-energy.png',
-      alt: 'Materials and energy technologies training diagram from laboratory to industry',
-    },
   },
   {
     number: '05',
@@ -84,10 +68,6 @@ export const trainingOfferings = [
       'Cross-disciplinary coordination',
       'One-to-one mentoring for technical leaders',
     ],
-    image: {
-      src: '/images/training/05-technical-leadership.png',
-      alt: 'Technical leadership and mentoring training diagram with roadmap and decision framework',
-    },
   },
   {
     number: '06',
@@ -100,10 +80,6 @@ export const trainingOfferings = [
       'Risk, stakeholder and dependency management',
       'Program governance and cross-functional coordination',
     ],
-    image: {
-      src: '/images/training/06-project-program-management.png',
-      alt: 'Project and program management training diagram covering governance and delivery',
-    },
   },
 ];
 

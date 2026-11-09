@@ -34,26 +34,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         {
           trainingOfferings.map((offering) => (
             <article class="offering">
-              <div class="offering__body">
-                <p class="offering__number">{offering.number}</p>
-                <h2 class="heading-sm">{offering.title}</h2>
-                <p class="offering__description">{offering.description}</p>
-                <ul>
-                  {offering.topics.map((topic) => (
-                    <li>{topic}</li>
-                  ))}
-                </ul>
-              </div>
-              <figure class="offering__media">
-                <img
-                  src={offering.image.src}
-                  alt={offering.image.alt}
-                  width="1400"
-                  height="1050"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
+              <p class="offering__number">{offering.number}</p>
+              <h2 class="heading-sm">{offering.title}</h2>
+              <p class="offering__description">{offering.description}</p>
+              <ul>
+                {offering.topics.map((topic) => (
+                  <li>{topic}</li>
+                ))}
+              </ul>
             </article>
           ))
         }
@@ -100,16 +88,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 <style>
   .offerings {
     display: grid;
-    gap: 0;
-    border-top: 1px solid var(--color-border);
+    gap: 1rem;
   }
 
   .offering {
-    display: grid;
-    gap: 1.5rem;
-    padding-block: 2.25rem;
-    border-bottom: 1px solid var(--color-border);
-    align-items: start;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
   }
 
   .offering__number {
@@ -127,7 +113,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .offering__description {
     margin-top: 0.85rem;
     color: var(--color-muted);
-    max-width: 42rem;
+    max-width: 44rem;
     font-size: 1.08rem;
     line-height: 1.65;
   }
@@ -156,24 +142,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     height: 0.35rem;
     border-radius: 50%;
     background: var(--color-teal);
-  }
-
-  .offering__media {
-    margin: 0;
-    width: min(100%, 24rem);
-    justify-self: start;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background: transparent;
-  }
-
-  .offering__media img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: contain;
-    object-position: center;
   }
 
   .formats {
@@ -223,19 +191,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .formats {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-  }
 
-  @media (min-width: 820px) {
-    .offering {
-      grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .offering__media {
-      width: 100%;
-      max-width: 28rem;
-      justify-self: end;
+    .offerings {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
