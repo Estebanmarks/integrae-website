@@ -1,0 +1,46 @@
+---
+import { privacyPage } from '../../content/privacy';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Privacy notice for Integrae Engineering Ltd website and professional enquiries."
+  path="/privacy/"
+>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="eyebrow">{privacyPage.eyebrow}</p>
+      <h1 class="heading-xl">{privacyPage.title}</h1>
+      <p class="muted" style="margin-top: 1rem;">Last updated: {privacyPage.updated}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container privacy-content">
+      {
+        privacyPage.sections.map((section) => (
+          <article class="privacy-section">
+            <h2 class="heading-sm">{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .privacy-content {
+    display: grid;
+    gap: 2rem;
+    max-width: 46rem;
+  }
+
+  .privacy-section p {
+    margin-top: 0.85rem;
+    color: var(--color-muted);
+  }
+</style>

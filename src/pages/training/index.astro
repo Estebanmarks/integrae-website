@@ -1,0 +1,200 @@
+---
+import CTASection from '../../components/CTASection.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import {
+  trainingApproach,
+  trainingCta,
+  trainingFormats,
+  trainingOfferings,
+  trainingPage,
+} from '../../content/training';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Training"
+  description="Professional engineering training and mentoring in systems engineering, simulation, industrial AI, materials and technical leadership."
+  path="/training/"
+>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="eyebrow">{trainingPage.eyebrow}</p>
+      <h1 class="heading-xl">{trainingPage.title}</h1>
+      <p class="lead" style="margin-top: 1rem;">{trainingPage.subheading}</p>
+      <div class="prose" style="margin-top: 1.25rem; max-width: 44rem; color: var(--color-muted);">
+        {trainingPage.intro.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <SectionHeader heading="Training Offerings" />
+      <div class="offerings">
+        {
+          trainingOfferings.map((offering) => (
+            <article class="offering">
+              <p class="offering__number">{offering.number}</p>
+              <h2 class="heading-sm">{offering.title}</h2>
+              <p class="offering__description">{offering.description}</p>
+              <ul>
+                {offering.topics.map((topic) => (
+                  <li>{topic}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader heading={trainingFormats.heading} />
+      <div class="formats">
+        {
+          trainingFormats.items.map((item) => (
+            <article class="format-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--approach">
+    <div class="container approach-grid">
+      <SectionHeader heading={trainingApproach.heading} />
+      <div>
+        <p class="muted" style="max-width: 40rem;">{trainingApproach.copy}</p>
+        <ul class="approach-points">
+          {trainingApproach.points.map((point) => <li>{point}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    heading={trainingCta.heading}
+    copy={trainingCta.copy}
+    buttonLabel={trainingCta.button}
+    href={trainingCta.href}
+  />
+</BaseLayout>
+
+<style>
+  .offerings {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .offering {
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+  }
+
+  .offering__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .offering__description {
+    margin-top: 0.75rem;
+    color: var(--color-muted);
+    max-width: 44rem;
+  }
+
+  .offering ul {
+    list-style: none;
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+  }
+
+  .offering li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--color-muted);
+  }
+
+  .offering li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--color-teal);
+  }
+
+  .formats {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .format-card {
+    padding: 1.35rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+  }
+
+  .format-card h3 {
+    color: var(--color-midnight);
+    font-size: var(--text-lg);
+  }
+
+  .format-card p {
+    margin-top: 0.45rem;
+    color: var(--color-muted);
+  }
+
+  .section--approach {
+    background: var(--color-white);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .approach-points {
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .approach-points li {
+    padding: 0.9rem 1rem;
+    border-left: 3px solid var(--color-teal);
+    background: var(--color-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-weight: 600;
+    color: var(--color-midnight);
+  }
+
+  @media (min-width: 700px) {
+    .formats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 980px) {
+    .offerings {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+  }
+</style>

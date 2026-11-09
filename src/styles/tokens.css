@@ -1,0 +1,49 @@
+:root {
+  /* Brand palette */
+  --color-midnight: #0b1929;
+  --color-deep-blue: #11283a;
+  --color-teal: #20c3bc;
+  --color-teal-dark: #179e98;
+  --color-teal-soft: rgba(32, 195, 188, 0.12);
+  --color-light: #f4f7fa;
+  --color-white: #ffffff;
+  --color-muted: #647687;
+  --color-text: #1a2a38;
+  --color-border: rgba(11, 25, 41, 0.1);
+  --color-border-strong: rgba(11, 25, 41, 0.16);
+
+  /* Typography */
+  --font-sans: 'Manrope', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: clamp(1.5rem, 2vw, 1.85rem);
+  --text-3xl: clamp(1.85rem, 3vw, 2.5rem);
+  --text-4xl: clamp(2.35rem, 5vw, 3.6rem);
+  --text-5xl: clamp(2.75rem, 6vw, 4.25rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.65;
+
+  --tracking-label: 0.12em;
+  --tracking-wide: 0.04em;
+
+  /* Layout */
+  --max-width: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 2rem);
+  --section-space: clamp(4.5rem, 10vw, 7.5rem);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.85rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  /* Elevation / motion */
+  --shadow-soft: 0 18px 40px rgba(11, 25, 41, 0.08);
+  --transition: 180ms ease;
+  --header-height: 4.5rem;
+}

@@ -1,0 +1,240 @@
+---
+import SectionHeader from '../../components/SectionHeader.astro';
+import { contactDetails, contactForm, contactPage, contactTopics } from '../../content/contact';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Integrae Engineering Ltd in Nicosia, Cyprus to discuss engineering advisory, technology evaluation or professional training."
+  path="/contact/"
+>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="eyebrow">{contactPage.eyebrow}</p>
+      <h1 class="heading-xl">{contactPage.title}</h1>
+      <p class="lead" style="margin-top: 1rem;">{contactPage.lead}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container contact-grid">
+      <div>
+        <SectionHeader heading={contactDetails.heading} />
+        <ul class="detail-list">
+          {
+            contactDetails.items.map((item) => (
+              <li>
+                <span class="detail-list__label">{item.label}</span>
+                {item.href ? (
+                  <a href={item.href} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined} target={item.href.startsWith('http') ? '_blank' : undefined}>
+                    {item.value}
+                  </a>
+                ) : (
+                  <span>{item.value}</span>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+
+        <SectionHeader heading={contactTopics.heading} class="topics-header" />
+        <ul class="topics">
+          {contactTopics.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <div class="form-panel">
+        <h2 class="heading-sm">{contactForm.heading}</h2>
+        <p class="form-note">{contactForm.note}</p>
+
+        <form class="contact-form" data-contact-form novalidate>
+          {
+            contactForm.fields.map((field) => (
+              <label class="field">
+                <span>
+                  {field.label}
+                  {field.required && <abbr title="required">*</abbr>}
+                </span>
+                {field.type === 'textarea' ? (
+                  <textarea name={field.name} rows="6" required={field.required}></textarea>
+                ) : (
+                  <input type={field.type} name={field.name} required={field.required} />
+                )}
+              </label>
+            ))
+          }
+          <button class="submit" type="submit">{contactForm.submitLabel}</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector('[data-contact-form]');
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const company = String(data.get('company') || '').trim();
+      const subject = String(data.get('subject') || '').trim();
+      const message = String(data.get('message') || '').trim();
+
+      if (!name || !email || !subject || !message) {
+        form.reportValidity();
+        return;
+      }
+
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Company: ${company || '—'}`,
+        '',
+        message,
+      ].join('\n');
+
+      const mailto = `mailto:info@integrae.com.cy?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    });
+  }
+</script>
+
+<style>
+  .contact-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .detail-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .detail-list li {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .detail-list__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-teal);
+  }
+
+  .detail-list a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--color-midnight);
+  }
+
+  .detail-list a:hover {
+    color: var(--color-teal-dark);
+  }
+
+  .topics-header {
+    margin-top: 1rem;
+  }
+
+  .topics {
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .topics li {
+    padding-left: 1rem;
+    position: relative;
+    color: var(--color-muted);
+  }
+
+  .topics li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--color-teal);
+  }
+
+  .form-panel {
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .form-note {
+    margin-top: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.45rem;
+    font-weight: 600;
+    color: var(--color-midnight);
+  }
+
+  .field abbr {
+    color: var(--color-teal-dark);
+    text-decoration: none;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem 0.95rem;
+    background: var(--color-light);
+    color: var(--color-text);
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--color-teal);
+    background: var(--color-white);
+  }
+
+  .submit {
+    margin-top: 0.35rem;
+    min-height: 3rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-teal);
+    color: var(--color-midnight);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .submit:hover {
+    background: var(--color-teal-dark);
+  }
+
+  @media (min-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+  }
+</style>

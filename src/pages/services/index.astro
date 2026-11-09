@@ -1,0 +1,202 @@
+---
+import Button from '../../components/Button.astro';
+import CTASection from '../../components/CTASection.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ServiceIcon from '../../components/icons/ServiceIcon.astro';
+import {
+  engagementModels,
+  services,
+  servicesCta,
+  servicesIntro,
+} from '../../content/services';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Services"
+  description="Systems engineering, modelling and digital twins, industrial AI, R&D advisory, materials and energy technologies, and technical leadership from Integrae Engineering Ltd."
+  path="/services/"
+>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="eyebrow">{servicesIntro.eyebrow}</p>
+      <h1 class="heading-xl">{servicesIntro.title}</h1>
+      <p class="lead" style="margin-top: 1rem;">{servicesIntro.lead}</p>
+      <p class="muted" style="margin-top: 1rem; max-width: 42rem;">{servicesIntro.copy}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container services-stack">
+      {
+        services.map((service) => (
+          <article class="service-block" id={service.id}>
+            <div class="service-block__header">
+              <span class="service-block__icon">
+                <ServiceIcon name={service.icon} />
+              </span>
+              <div>
+                <p class="service-block__number">{service.number}</p>
+                <h2 class="heading-sm">{service.title}</h2>
+              </div>
+            </div>
+            <p class="service-block__description">{service.description}</p>
+            <h3 class="service-block__capabilities-title">Capabilities</h3>
+            <ul class="service-block__capabilities">
+              {service.capabilities.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader heading={engagementModels.heading} />
+      <div class="engagement-grid">
+        {
+          engagementModels.items.map((item) => (
+            <article class="engagement-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="services-inline-cta">
+        <Button href={servicesCta.href}>{servicesCta.button}</Button>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    heading={servicesCta.heading}
+    copy={servicesCta.copy}
+    buttonLabel={servicesCta.button}
+    href={servicesCta.href}
+  />
+</BaseLayout>
+
+<style>
+  .services-stack {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .service-block {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+  }
+
+  .service-block__header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .service-block__icon {
+    display: inline-flex;
+    width: 3.25rem;
+    height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: var(--color-teal-soft);
+  }
+
+  .service-block__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    color: var(--color-teal);
+    margin-bottom: 0.35rem;
+  }
+
+  .service-block__description {
+    margin-top: 1.1rem;
+    max-width: 48rem;
+    color: var(--color-muted);
+  }
+
+  .service-block__capabilities-title {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-midnight);
+  }
+
+  .service-block__capabilities {
+    list-style: none;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .service-block__capabilities li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--color-muted);
+  }
+
+  .service-block__capabilities li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--color-teal);
+  }
+
+  .engagement-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .engagement-card {
+    padding: 1.35rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+  }
+
+  .engagement-card h3 {
+    font-size: var(--text-lg);
+    color: var(--color-midnight);
+  }
+
+  .engagement-card p {
+    margin-top: 0.45rem;
+    color: var(--color-muted);
+  }
+
+  .services-inline-cta {
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 700px) {
+    .service-block__capabilities {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .engagement-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 980px) {
+    .engagement-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

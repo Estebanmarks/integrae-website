@@ -1,0 +1,73 @@
+---
+import ServiceIcon from './icons/ServiceIcon.astro';
+
+interface Props {
+  title: string;
+  summary: string;
+  href: string;
+  icon: 'systems' | 'simulation' | 'ai' | 'rnd' | 'materials' | 'leadership';
+}
+
+const { title, summary, href, icon } = Astro.props;
+---
+
+<a class="service-card" href={href}>
+  <span class="service-card__icon">
+    <ServiceIcon name={icon} />
+  </span>
+  <span class="service-card__body">
+    <span class="service-card__title">{title}</span>
+    <span class="service-card__summary">{summary}</span>
+  </span>
+</a>
+
+<style>
+  .service-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.35rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color var(--transition),
+      transform var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .service-card:hover {
+    border-color: rgba(32, 195, 188, 0.45);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+
+  .service-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-teal-soft);
+  }
+
+  .service-card__title {
+    display: block;
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-midnight);
+  }
+
+  .service-card__summary {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+</style>

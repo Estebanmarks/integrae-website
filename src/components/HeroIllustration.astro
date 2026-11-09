@@ -1,0 +1,122 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<svg
+  class:list={['hero-illustration', className]}
+  viewBox="0 0 520 620"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Technical illustration of a precision rotor assembly"
+>
+  <defs>
+    <linearGradient id="heroGlow" x1="80" y1="40" x2="460" y2="580" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20C3BC" stop-opacity="0.22" />
+      <stop offset="0.55" stop-color="#20C3BC" stop-opacity="0.05" />
+      <stop offset="1" stop-color="#11283A" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="metal" x1="160" y1="120" x2="380" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D7E3EC" />
+      <stop offset="0.45" stop-color="#8FA3B4" />
+      <stop offset="1" stop-color="#4B6274" />
+    </linearGradient>
+    <radialGradient id="hub" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 310) rotate(90) scale(70)">
+      <stop stop-color="#E8F1F6" />
+      <stop offset="1" stop-color="#6D8496" />
+    </radialGradient>
+  </defs>
+
+  <rect width="520" height="620" rx="28" fill="#0B1929" />
+  <rect width="520" height="620" rx="28" fill="url(#heroGlow)" />
+
+  <!-- Technical grid -->
+  <g opacity="0.18" stroke="#20C3BC" stroke-width="1">
+    {
+      Array.from({ length: 11 }).map((_, i) => (
+        <line x1={40 + i * 44} y1="40" x2={40 + i * 44} y2="580" />
+      ))
+    }
+    {
+      Array.from({ length: 13 }).map((_, i) => (
+        <line x1="40" y1={40 + i * 42} x2="480" y2={40 + i * 42} />
+      ))
+    }
+  </g>
+
+  <!-- Outer rings -->
+  <circle cx="260" cy="310" r="210" stroke="#20C3BC" stroke-opacity="0.25" stroke-width="1.5" />
+  <circle cx="260" cy="310" r="176" stroke="#8FA3B4" stroke-opacity="0.45" stroke-width="1.25" stroke-dasharray="4 8" />
+  <circle cx="260" cy="310" r="142" stroke="#20C3BC" stroke-opacity="0.55" stroke-width="2" />
+
+  <!-- Rotor blades -->
+  <g class="rotor">
+    {
+      Array.from({ length: 8 }).map((_, i) => {
+        const angle = i * 45;
+        return (
+          <g transform={`translate(260 310) rotate(${angle})`}>
+            <path
+              d="M0 -28 C18 -70 28 -118 18 -168 C8 -198 -8 -198 -18 -168 C-28 -118 -18 -70 0 -28Z"
+              fill="url(#metal)"
+              fill-opacity="0.92"
+              stroke="#E8F1F6"
+              stroke-opacity="0.35"
+              stroke-width="1"
+            />
+            <path d="M0 -40 L0 -150" stroke="#0B1929" stroke-opacity="0.25" stroke-width="1.5" />
+          </g>
+        );
+      })
+    }
+  </g>
+
+  <!-- Hub -->
+  <circle cx="260" cy="310" r="54" fill="url(#hub)" stroke="#D7E3EC" stroke-width="2" />
+  <circle cx="260" cy="310" r="28" fill="#11283A" stroke="#20C3BC" stroke-width="2" />
+  <circle cx="260" cy="310" r="10" fill="#20C3BC" />
+
+  <!-- Dimension marks -->
+  <g stroke="#20C3BC" stroke-opacity="0.7" stroke-width="1.25">
+    <path d="M70 520h380" />
+    <path d="M70 512v16M450 512v16" />
+    <path d="M470 90v360" />
+    <path d="M462 90h16M462 450h16" />
+  </g>
+  <text x="260" y="548" text-anchor="middle" fill="#20C3BC" fill-opacity="0.85" font-family="IBM Plex Mono, monospace" font-size="12">
+    PRECISION ASSEMBLY — SCHEMATIC
+  </text>
+</svg>
+
+<style>
+  .hero-illustration {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .rotor {
+    transform-origin: 260px 310px;
+    animation: spin 48s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rotor {
+      animation: none;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

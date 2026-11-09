@@ -1,0 +1,253 @@
+---
+import CTASection from '../../components/CTASection.astro';
+import ExperienceHighlight from '../../components/ExperienceHighlight.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import {
+  aboutCta,
+  aboutExperienceThemes,
+  aboutFounder,
+  aboutMission,
+  aboutPage,
+  aboutPrinciples,
+} from '../../content/about';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="About Integrae Engineering Ltd and founder Esteban Darío Marks, Dr.Eng. — senior-led multidisciplinary engineering and technology advisory based in Nicosia, Cyprus."
+  path="/about/"
+>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="eyebrow">{aboutPage.eyebrow}</p>
+      <h1 class="heading-xl">{aboutPage.title}</h1>
+      <p class="lead" style="margin-top: 1rem;">{aboutPage.lead}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container mission-grid">
+      <SectionHeader heading={aboutMission.heading} />
+      <div class="prose" style="color: var(--color-muted); max-width: 42rem;">
+        {aboutMission.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--founder">
+    <div class="container founder-grid">
+      <div class="founder-photo" role="img" aria-label={aboutFounder.photoPlaceholder}>
+        <div class="founder-photo__frame">
+          <svg viewBox="0 0 360 440" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="360" height="440" rx="24" fill="#11283A" />
+            <circle cx="180" cy="160" r="58" stroke="#20C3BC" stroke-opacity="0.55" stroke-width="2" />
+            <path d="M90 340c28-54 70-82 90-82s62 28 90 82" stroke="#20C3BC" stroke-opacity="0.45" stroke-width="2" />
+            <text x="180" y="400" text-anchor="middle" fill="#8FA3B4" font-family="IBM Plex Mono, monospace" font-size="12">
+              PHOTO PLACEHOLDER
+            </text>
+          </svg>
+        </div>
+        <p class="founder-photo__caption">{aboutFounder.photoPlaceholder}</p>
+      </div>
+
+      <div>
+        <p class="eyebrow">Leadership</p>
+        <h2 class="heading-md">{aboutFounder.heading}</h2>
+        <p class="founder-name">{aboutFounder.name}</p>
+        <p class="founder-role">
+          {aboutFounder.credentials} — {aboutFounder.role}
+        </p>
+        <p class="founder-summary">{aboutFounder.summary}</p>
+        <div class="prose founder-copy">
+          {aboutFounder.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        <h3 class="education-title">Education</h3>
+        <ul class="education-list">
+          {
+            aboutFounder.education.map((item) => (
+              <li>
+                <strong>{item.credential}</strong>
+                <span>{item.detail}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader heading={aboutExperienceThemes.heading} />
+      <p class="muted" style="margin-top: -1.5rem; margin-bottom: 1.5rem; max-width: 46rem;">
+        {aboutExperienceThemes.note}
+      </p>
+      <div>
+        {
+          aboutExperienceThemes.items.map((item) => (
+            <ExperienceHighlight title={item.title} description={item.description} label={item.label} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--principles">
+    <div class="container">
+      <SectionHeader heading={aboutPrinciples.heading} />
+      <div class="principles-grid">
+        {
+          aboutPrinciples.items.map((item) => (
+            <article class="principle">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    heading={aboutCta.heading}
+    copy={aboutCta.copy}
+    buttonLabel={aboutCta.button}
+    href={aboutCta.href}
+  />
+</BaseLayout>
+
+<style>
+  .mission-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .section--founder {
+    background: var(--color-white);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .founder-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .founder-photo__frame {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .founder-photo__caption {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .founder-name {
+    margin-top: 1rem;
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-midnight);
+  }
+
+  .founder-role {
+    margin-top: 0.35rem;
+    color: var(--color-teal-dark);
+    font-weight: 600;
+  }
+
+  .founder-summary {
+    margin-top: 1.25rem;
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+  }
+
+  .founder-copy {
+    margin-top: 1rem;
+    color: var(--color-muted);
+  }
+
+  .education-title {
+    margin-top: 2rem;
+    margin-bottom: 0.85rem;
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-midnight);
+  }
+
+  .education-list {
+    list-style: none;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .education-list li {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.95rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-light);
+  }
+
+  .education-list strong {
+    color: var(--color-midnight);
+  }
+
+  .education-list span {
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
+  .section--principles {
+    background: var(--color-light);
+  }
+
+  .principles-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .principle {
+    padding: 1.35rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+  }
+
+  .principle h3 {
+    color: var(--color-midnight);
+    font-size: var(--text-lg);
+  }
+
+  .principle p {
+    margin-top: 0.4rem;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 800px) {
+    .mission-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 2.5rem;
+    }
+
+    .founder-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .principles-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 980px) {
+    .principles-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

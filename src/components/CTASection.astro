@@ -1,0 +1,54 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  heading: string;
+  copy: string;
+  buttonLabel: string;
+  href: string;
+}
+
+const { heading, copy, buttonLabel, href } = Astro.props;
+---
+
+<section class="cta-section section">
+  <div class="container">
+    <div class="cta-section__panel">
+      <div>
+        <h2 class="heading-md cta-section__heading">{heading}</h2>
+        <p class="cta-section__copy">{copy}</p>
+      </div>
+      <Button href={href} variant="primary">{buttonLabel}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section__panel {
+    display: grid;
+    gap: 1.75rem;
+    padding: clamp(2rem, 5vw, 3rem);
+    border-radius: var(--radius-xl);
+    background:
+      radial-gradient(ellipse 60% 80% at 100% 0%, rgba(32, 195, 188, 0.18), transparent 55%),
+      linear-gradient(145deg, var(--color-midnight), var(--color-deep-blue));
+    color: var(--color-white);
+  }
+
+  .cta-section__heading {
+    color: var(--color-white);
+  }
+
+  .cta-section__copy {
+    margin-top: 0.9rem;
+    max-width: 40rem;
+    color: rgba(255, 255, 255, 0.74);
+  }
+
+  @media (min-width: 800px) {
+    .cta-section__panel {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+</style>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0B1929"/>
+  <circle cx="980" cy="180" r="220" fill="#20C3BC" fill-opacity="0.08"/>
+  <circle cx="980" cy="180" r="140" stroke="#20C3BC" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="980" cy="180" r="70" stroke="#20C3BC" stroke-opacity="0.55" stroke-width="2"/>
+  <rect x="920" y="120" width="40" height="40" rx="6" stroke="#20C3BC" stroke-width="3"/>
+  <rect x="980" y="180" width="40" height="40" rx="6" stroke="#20C3BC" stroke-width="3"/>
+  <path d="M960 140h18a16 16 0 0 1 16 16v18" stroke="#20C3BC" stroke-width="3" stroke-linecap="round"/>
+  <text x="96" y="250" fill="#FFFFFF" font-family="Manrope, Segoe UI, sans-serif" font-size="64" font-weight="800" letter-spacing="4">INTEGRAE</text>
+  <text x="96" y="300" fill="#20C3BC" font-family="IBM Plex Mono, monospace" font-size="24" letter-spacing="6">ENGINEERING LTD</text>
+  <text x="96" y="390" fill="#D7E3EC" font-family="Manrope, Segoe UI, sans-serif" font-size="36" font-weight="600">Engineering Intelligence. Practical Impact.</text>
+  <text x="96" y="450" fill="#8FA3B4" font-family="Manrope, Segoe UI, sans-serif" font-size="22">Independent engineering &amp; technology advisory  Nicosia, Cyprus</text>
+</svg>

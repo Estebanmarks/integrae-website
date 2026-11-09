@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  label?: string;
+}
+
+const { title, description, label } = Astro.props;
+---
+
+<article class="experience">
+  {label && <p class="experience__label">{label}</p>}
+  <h3 class="experience__title">{title}</h3>
+  <p class="experience__description">{description}</p>
+</article>
+
+<style>
+  .experience {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .experience__label {
+    margin-bottom: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-teal-dark);
+  }
+
+  .experience__title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-midnight);
+  }
+
+  .experience__description {
+    margin-top: 0.55rem;
+    color: var(--color-muted);
+    max-width: 46rem;
+  }
+</style>

@@ -1,0 +1,273 @@
+---
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import HeroIllustration from '../components/HeroIllustration.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import {
+  homeApproach,
+  homeClosing,
+  homeHero,
+  homeIndustries,
+  homeIntro,
+  homeServices,
+} from '../content/home';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout path="/">
+  <section class="home-hero section--tight">
+    <div class="container">
+      <div class="home-hero__panel">
+        <div class="home-hero__copy">
+          <p class="eyebrow eyebrow--light">{homeHero.eyebrow}</p>
+          <h1 class="home-hero__title">
+            {homeHero.titleLines.map((line) => <span>{line}</span>)}
+          </h1>
+          <p class="home-hero__text">{homeHero.text}</p>
+          <p class="home-hero__supporting">{homeHero.supporting}</p>
+          <div class="home-hero__actions">
+            <Button href={homeHero.primaryCta.href}>{homeHero.primaryCta.label}</Button>
+            <Button href={homeHero.secondaryCta.href} variant="ghost-light">
+              {homeHero.secondaryCta.label}
+            </Button>
+          </div>
+        </div>
+        <div class="home-hero__visual">
+          <HeroIllustration />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container intro-grid">
+      <SectionHeader heading={homeIntro.heading} />
+      <div class="prose lead-block">
+        {homeIntro.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--services">
+    <div class="container">
+      <SectionHeader eyebrow={homeServices.eyebrow} heading={homeServices.heading} align="center" />
+      <div class="services-grid">
+        {
+          homeServices.cards.map((card) => (
+            <ServiceCard title={card.title} summary={card.summary} href={card.href} icon={card.icon} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader heading={homeApproach.heading} />
+      <ol class="approach-list">
+        {
+          homeApproach.steps.map((step) => (
+            <li class="approach-item">
+              <span class="approach-item__number">{step.number}</span>
+              <div>
+                <h3 class="approach-item__title">{step.title}</h3>
+                <p class="approach-item__description">{step.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--industries">
+    <div class="container">
+      <SectionHeader heading={homeIndustries.heading} />
+      <p class="industries-note">{homeIndustries.note}</p>
+      <ul class="industries-grid">
+        {homeIndustries.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <CTASection
+    heading={homeClosing.heading}
+    copy={homeClosing.copy}
+    buttonLabel={homeClosing.cta.label}
+    href={homeClosing.cta.href}
+  />
+</BaseLayout>
+
+<style>
+  .home-hero__panel {
+    display: grid;
+    gap: 2rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: var(--radius-xl);
+    background:
+      radial-gradient(ellipse 55% 70% at 85% 20%, rgba(32, 195, 188, 0.16), transparent 55%),
+      linear-gradient(160deg, var(--color-midnight) 0%, var(--color-deep-blue) 100%);
+    color: var(--color-white);
+    overflow: hidden;
+  }
+
+  .home-hero__title {
+    display: grid;
+    gap: 0.15rem;
+    font-size: var(--text-5xl);
+    font-weight: 800;
+    line-height: var(--leading-tight);
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+  }
+
+  .home-hero__text {
+    margin-top: 1.25rem;
+    font-size: var(--text-lg);
+    max-width: 34rem;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .home-hero__supporting {
+    margin-top: 1rem;
+    max-width: 36rem;
+    color: rgba(255, 255, 255, 0.64);
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2rem;
+  }
+
+  .intro-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .lead-block {
+    max-width: 44rem;
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+  }
+
+  .section--services {
+    background: var(--color-white);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .services-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .approach-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding: 1.35rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+  }
+
+  .approach-item__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-teal);
+    font-weight: 500;
+  }
+
+  .approach-item__title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-midnight);
+  }
+
+  .approach-item__description {
+    margin-top: 0.35rem;
+    color: var(--color-muted);
+  }
+
+  .section--industries {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent),
+      var(--color-light);
+  }
+
+  .industries-note {
+    margin-top: -1.5rem;
+    margin-bottom: 1.75rem;
+    max-width: 42rem;
+    color: var(--color-muted);
+  }
+
+  .industries-grid {
+    list-style: none;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .industries-grid li {
+    padding: 1.1rem 1.2rem;
+    border-left: 3px solid var(--color-teal);
+    background: var(--color-white);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-weight: 600;
+    color: var(--color-midnight);
+  }
+
+  @media (min-width: 700px) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .approach-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .industries-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 980px) {
+    .home-hero__panel {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 2.5rem;
+      padding: 2.75rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .approach-list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .approach-item {
+      grid-template-columns: 1fr;
+      min-height: 100%;
+    }
+
+    .industries-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .intro-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: start;
+      gap: 3rem;
+    }
+  }
+</style>

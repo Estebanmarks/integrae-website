@@ -1,0 +1,289 @@
+---
+import { navItems, site } from '../content/site';
+import Logo from './Logo.astro';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <Logo variant="dark" />
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                class:list={['site-nav__link', { 'is-active': isActive(item.href) }]}
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a class="site-header__cta" href="/contact/">Contact</a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      data-menu-toggle
+    >
+      <span class="sr-only">Open menu</span>
+      <span class="menu-toggle__bars" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+    <nav aria-label="Mobile">
+      <ul class="mobile-nav__list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                class:list={['mobile-nav__link', { 'is-active': isActive(item.href) }]}
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="mobile-nav__email" href={`mailto:${site.email}`}>{site.email}</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const panel = document.querySelector('[data-mobile-nav]');
+
+  if (toggle instanceof HTMLButtonElement && panel instanceof HTMLElement) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      document.body.classList.toggle('nav-open', open);
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      setOpen(open);
+    });
+
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  }
+
+  const onScroll = () => {
+    if (!(header instanceof HTMLElement)) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(244, 247, 250, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .site-header.is-scrolled {
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 8px 24px rgba(11, 25, 41, 0.04);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: var(--header-height);
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .site-nav__list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .site-nav__link {
+    display: inline-flex;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-muted);
+    transition:
+      color var(--transition),
+      background-color var(--transition);
+  }
+
+  .site-nav__link:hover,
+  .site-nav__link.is-active {
+    color: var(--color-midnight);
+    background: rgba(32, 195, 188, 0.12);
+  }
+
+  .site-header__cta {
+    display: none;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: var(--color-midnight);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .site-header__cta:hover {
+    background: var(--color-deep-blue);
+    color: var(--color-white);
+  }
+
+  .menu-toggle {
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    cursor: pointer;
+  }
+
+  .menu-toggle__bars,
+  .menu-toggle__bars::before,
+  .menu-toggle__bars::after {
+    display: block;
+    width: 1.1rem;
+    height: 2px;
+    margin-inline: auto;
+    background: var(--color-midnight);
+    border-radius: 2px;
+    transition: transform var(--transition);
+  }
+
+  .menu-toggle__bars {
+    position: relative;
+  }
+
+  .menu-toggle__bars::before,
+  .menu-toggle__bars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .menu-toggle__bars::before {
+    top: -6px;
+  }
+
+  .menu-toggle__bars::after {
+    top: 6px;
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__bars {
+    background: transparent;
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__bars::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__bars::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  .mobile-nav {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-white);
+    padding: 1rem var(--gutter) 1.5rem;
+  }
+
+  .mobile-nav__list {
+    list-style: none;
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .mobile-nav__link {
+    display: block;
+    padding: 0.9rem 0.35rem;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--color-midnight);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-nav__link.is-active {
+    color: var(--color-teal-dark);
+  }
+
+  .mobile-nav__email {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  @media (min-width: 920px) {
+    .site-nav,
+    .site-header__cta {
+      display: block;
+    }
+
+    .menu-toggle,
+    .mobile-nav {
+      display: none !important;
+    }
+
+    .site-header__inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+    }
+
+    .site-nav {
+      justify-self: center;
+    }
+  }
+</style>
