@@ -37,19 +37,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   <section class="section section--founder">
     <div class="container founder-grid">
-      <div class="founder-photo" role="img" aria-label={aboutFounder.photoPlaceholder}>
+      <figure class="founder-photo">
         <div class="founder-photo__frame">
-          <svg viewBox="0 0 360 440" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="360" height="440" rx="24" fill="#11283A" />
-            <circle cx="180" cy="160" r="58" stroke="#20C3BC" stroke-opacity="0.55" stroke-width="2" />
-            <path d="M90 340c28-54 70-82 90-82s62 28 90 82" stroke="#20C3BC" stroke-opacity="0.45" stroke-width="2" />
-            <text x="180" y="400" text-anchor="middle" fill="#8FA3B4" font-family="IBM Plex Mono, monospace" font-size="12">
-              PHOTO PLACEHOLDER
-            </text>
-          </svg>
+          <img
+            src={aboutFounder.photo.src}
+            alt={aboutFounder.photo.alt}
+            width="720"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <p class="founder-photo__caption">{aboutFounder.photoPlaceholder}</p>
-      </div>
+        <figcaption class="founder-photo__caption">
+          {aboutFounder.name} — {aboutFounder.role}
+        </figcaption>
+      </figure>
 
       <div>
         <p class="eyebrow">Leadership</p>
@@ -125,7 +127,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   .section--founder {
-    background: var(--color-white);
+    /* Cool grey close to the portrait backdrop, so the photo does not float on stark white */
+    background:
+      radial-gradient(ellipse 70% 80% at 15% 30%, rgba(32, 195, 188, 0.06), transparent 55%),
+      linear-gradient(180deg, #e9eef3 0%, var(--color-light) 45%, #f7f9fb 100%);
     border-block: 1px solid var(--color-border);
   }
 
@@ -134,14 +139,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     gap: 2rem;
   }
 
+  .founder-photo {
+    margin: 0;
+  }
+
   .founder-photo__frame {
+    position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    border: 1px solid var(--color-border);
+    background: #11283a;
+    border: 1px solid rgba(17, 40, 58, 0.18);
+    box-shadow:
+      0 18px 40px rgba(11, 25, 41, 0.12),
+      inset 0 0 0 1px rgba(32, 195, 188, 0.18);
+    aspect-ratio: 4 / 5;
+  }
+
+  .founder-photo__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    display: block;
+  }
+
+  .founder-photo__frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 62%, rgba(11, 25, 41, 0.28) 100%),
+      linear-gradient(90deg, rgba(11, 25, 41, 0.12), transparent 18%, transparent 82%, rgba(11, 25, 41, 0.12));
   }
 
   .founder-photo__caption {
-    margin-top: 0.75rem;
+    margin-top: 0.85rem;
     font-size: var(--text-sm);
     color: var(--color-muted);
   }

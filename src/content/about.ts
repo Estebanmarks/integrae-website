@@ -18,8 +18,10 @@ export const aboutFounder = {
   name: 'Esteban Darío Marks',
   credentials: 'Dr.Eng. (Dr.techn.)',
   role: 'Founder & Managing Director',
-  photoPlaceholder:
-    'Professional photograph placeholder — replace with an approved portrait of Esteban Marks.',
+  photo: {
+    src: '/images/esteban-marks.jpg',
+    alt: 'Esteban Darío Marks, Founder and Managing Director of Integrae Engineering Ltd',
+  },
   summary:
     'Technology and systems leader with more than 20 years of international experience across engineering research, industrial development, automotive and mobility, biotechnology, advanced manufacturing, energy systems and technology leadership.',
   paragraphs: [
