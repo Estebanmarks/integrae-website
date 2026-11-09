@@ -2,7 +2,9 @@
 import CTASection from '../../components/CTASection.astro';
 import ExperienceHighlight from '../../components/ExperienceHighlight.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
 import {
+  aboutCredentials,
   aboutCta,
   aboutExperienceThemes,
   aboutFounder,
@@ -15,7 +17,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="About"
-  description="About Integrae Engineering Ltd and founder Esteban Darío Marks, Dr.Eng. — senior-led multidisciplinary engineering and technology advisory based in Nicosia, Cyprus."
+  description="About Integrae Engineering Ltd and founder Esteban Darío Marks, Dr.Eng. — senior-led multidisciplinary engineering and technology advisory for complex industrial systems."
   path="/about/"
 >
   <section class="page-hero">
@@ -76,6 +78,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             ))
           }
         </ul>
+
+        <div class="credentials-block">
+          <h3 class="education-title">{aboutCredentials.heading}</h3>
+          <p class="credentials-copy">{aboutCredentials.copy}</p>
+          <div class="credentials-actions">
+            <Button href={aboutCredentials.cta.href}>{aboutCredentials.cta.label}</Button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -233,6 +243,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .education-list span {
     color: var(--color-muted);
     font-size: var(--text-sm);
+  }
+
+  .credentials-block {
+    margin-top: 0.5rem;
+  }
+
+  .credentials-copy {
+    max-width: 40rem;
+    color: var(--color-muted);
+  }
+
+  .credentials-actions {
+    margin-top: 1.15rem;
   }
 
   .section--principles {

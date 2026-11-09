@@ -11,6 +11,7 @@ import {
   homeIntro,
   homeServices,
 } from '../content/home';
+import { homeCredibility, homeTrackRecordTeaser } from '../content/trackRecord';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -59,6 +60,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <section class="section section--tight section--credibility">
+    <div class="container">
+      <ul class="credibility-strip">
+        {
+          homeCredibility.items.map((item) => (
+            <li class="credibility-item">
+              <p class="credibility-item__value">
+                <span>{item.value}</span>
+                <span class="credibility-item__label">{item.label}</span>
+              </p>
+              <p class="credibility-item__detail">{item.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="credibility-footnote">{homeCredibility.footnote}</p>
+    </div>
+  </section>
+
   <section class="section section--services">
     <div class="container">
       <SectionHeader eyebrow={homeServices.eyebrow} heading={homeServices.heading} align="center" />
@@ -98,6 +118,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <ul class="industries-grid">
         {homeIndustries.items.map((item) => <li>{item}</li>)}
       </ul>
+    </div>
+  </section>
+
+  <section class="section section--teaser">
+    <div class="container">
+      <SectionHeader heading={homeTrackRecordTeaser.heading} />
+      <p class="teaser-intro">{homeTrackRecordTeaser.intro}</p>
+      <p class="teaser-label">{homeTrackRecordTeaser.secondaryLabel}</p>
+      <div class="teaser-grid">
+        {
+          homeTrackRecordTeaser.cards.map((card) => (
+            <a class="teaser-card" href={card.href}>
+              <h3>{card.title}</h3>
+              <p>{card.summary}</p>
+            </a>
+          ))
+        }
+      </div>
+      <div class="teaser-actions">
+        <Button href={homeTrackRecordTeaser.cta.href}>{homeTrackRecordTeaser.cta.label}</Button>
+      </div>
     </div>
   </section>
 
@@ -175,9 +216,111 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: var(--text-lg);
   }
 
+  .section--credibility {
+    padding-top: 0;
+  }
+
+  .credibility-strip {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .credibility-item {
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+  }
+
+  .credibility-item__value {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--color-midnight);
+    letter-spacing: -0.03em;
+  }
+
+  .credibility-item__label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-teal-dark);
+  }
+
+  .credibility-item__detail {
+    margin-top: 0.45rem;
+    color: var(--color-muted);
+  }
+
+  .credibility-footnote {
+    margin-top: 1rem;
+    max-width: 46rem;
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
   .section--services {
     background: var(--color-white);
     border-block: 1px solid var(--color-border);
+  }
+
+  .section--teaser {
+    background: var(--color-white);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .teaser-intro {
+    margin-top: -1.35rem;
+    margin-bottom: 1rem;
+    max-width: 48rem;
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+  }
+
+  .teaser-label {
+    margin-bottom: 1.25rem;
+    color: var(--color-teal-dark);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .teaser-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .teaser-card {
+    display: grid;
+    gap: 0.45rem;
+    padding: 1.2rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .teaser-card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-2px);
+  }
+
+  .teaser-card h3 {
+    font-size: var(--text-lg);
+    color: var(--color-midnight);
+  }
+
+  .teaser-card p {
+    color: var(--color-muted);
+  }
+
+  .teaser-actions {
+    margin-top: 1.5rem;
   }
 
   .services-grid {
@@ -248,6 +391,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   @media (min-width: 700px) {
+    .credibility-strip {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .services-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -258,6 +405,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     .industries-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .teaser-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 

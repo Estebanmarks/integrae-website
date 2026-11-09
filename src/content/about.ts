@@ -2,7 +2,7 @@ export const aboutPage = {
   eyebrow: 'About',
   title: 'Senior-led engineering advisory.',
   lead:
-    'Integrae Engineering Ltd is a Cyprus-based independent consultancy connecting deep engineering knowledge with practical industrial execution.',
+    'Integrae Engineering Ltd is an independent consultancy connecting deep engineering knowledge with practical industrial execution across international markets.',
 };
 
 export const aboutMission = {
@@ -38,6 +38,13 @@ export const aboutFounder = {
       detail: 'Universidad Tecnológica Nacional (UTN), Argentina',
     },
   ],
+};
+
+export const aboutCredentials = {
+  heading: 'Research Foundation and Professional Experience',
+  copy:
+    "Esteban Marks holds a doctorate in mechanical engineering from Vienna University of Technology and completed mechanical and electrical engineering studies at Argentina's National Technological University. His professional background connects materials science and computational analysis with systems engineering, industrial product development and technical program leadership.",
+  cta: { label: 'Selected Engineering Experience', href: '/track-record/' },
 };
 
 export const aboutExperienceThemes = {

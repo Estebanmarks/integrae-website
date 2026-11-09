@@ -1,0 +1,155 @@
+---
+import CaseCard from '../../components/CaseCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { publications } from '../../content/publications';
+import { trackRecordPage } from '../../content/trackRecord';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import cases from '../../data/cases.json';
+
+type CaseItem = (typeof cases)[number];
+---
+
+<BaseLayout
+  title="Track Record"
+  description={trackRecordPage.metaDescription}
+  path="/track-record/"
+>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="eyebrow">{trackRecordPage.eyebrow}</p>
+      <h1 class="heading-xl">{trackRecordPage.title}</h1>
+      <p class="lead" style="margin-top: 1rem;">{trackRecordPage.lead}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="prose" style="color: var(--color-muted); max-width: 48rem;">
+        {trackRecordPage.intro.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader heading={trackRecordPage.casesHeading} />
+      <div class="cases-stack">
+        {
+          (cases as CaseItem[]).map((item) => (
+            <CaseCard
+              id={item.id}
+              slug={item.slug}
+              title={item.title}
+              domain={item.domain}
+              challenge={item.challenge}
+              contribution={item.contribution}
+              methods={item.methods}
+              outcome={item.outcome}
+              academicHref={'academicHref' in item ? item.academicHref : undefined}
+              academicLabel={'academicLabel' in item ? item.academicLabel : undefined}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--publications">
+    <div class="container">
+      <SectionHeader heading={trackRecordPage.publicationsHeading} />
+      <p class="muted" style="margin-top: -1.5rem; margin-bottom: 1.5rem; max-width: 46rem;">
+        {trackRecordPage.publicationsIntro}
+      </p>
+      <ul class="publication-list">
+        {
+          publications.map((pub) => (
+            <li class="publication-item">
+              <p class="publication-item__kind">{pub.kind}</p>
+              <p class="publication-item__citation">{pub.citation}</p>
+              <p class="publication-item__links">
+                <a href={pub.href} rel="noopener noreferrer" target="_blank">
+                  {pub.kind === 'Journal article' ? 'DOI / publisher record' : 'Open conference record'}
+                </a>
+                {pub.secondaryHref && (
+                  <>
+                    <span aria-hidden="true"> · </span>
+                    <a href={pub.secondaryHref} rel="noopener noreferrer" target="_blank">
+                      {pub.secondaryLabel}
+                    </a>
+                  </>
+                )}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <SectionHeader heading={trackRecordPage.perspectiveHeading} />
+      <p class="lead" style="max-width: 46rem;">{trackRecordPage.perspective}</p>
+    </div>
+  </section>
+
+  <CTASection
+    heading={trackRecordPage.cta.heading}
+    copy={trackRecordPage.cta.copy}
+    buttonLabel={trackRecordPage.cta.button}
+    href={trackRecordPage.cta.href}
+  />
+</BaseLayout>
+
+<style>
+  .cases-stack {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .section--publications {
+    background: var(--color-light);
+  }
+
+  .publication-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .publication-item {
+    padding: 1.15rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+  }
+
+  .publication-item__kind {
+    margin-bottom: 0.4rem;
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-teal-dark);
+    font-weight: 700;
+  }
+
+  .publication-item__citation {
+    color: var(--color-ink);
+    max-width: 58rem;
+  }
+
+  .publication-item__links {
+    margin-top: 0.65rem;
+  }
+
+  .publication-item__links a {
+    color: var(--color-teal-dark);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .publication-item__links a:hover {
+    text-decoration: underline;
+  }
+</style>

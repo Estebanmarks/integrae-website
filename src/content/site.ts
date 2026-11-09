@@ -10,7 +10,6 @@ export const site = {
   email: 'info@integrae.com.cy',
   phone: '+357 97 491406',
   phoneHref: 'tel:+35797491406',
-  location: 'Nicosia, Cyprus',
   linkedin: 'https://www.linkedin.com/company/integrae-engineering/',
   founder: {
     name: 'Esteban Darío Marks',
@@ -24,10 +23,11 @@ export const site = {
 export const navItems = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services/' },
+  { label: 'Track Record', href: '/track-record/' },
   { label: 'Training', href: '/training/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;
 
 export const footerNote =
-  'Integrae Engineering Ltd is an independent engineering and technology consultancy based in Nicosia, Cyprus.';
+  'Integrae Engineering Ltd is an independent engineering and technology consultancy serving complex industrial challenges internationally.';

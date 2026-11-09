@@ -1,0 +1,152 @@
+---
+interface Props {
+  id: string;
+  slug: string;
+  title: string;
+  domain: string;
+  challenge: string;
+  contribution: string;
+  methods: string[];
+  outcome: string;
+  academicHref?: string;
+  academicLabel?: string;
+}
+
+const {
+  id,
+  slug,
+  title,
+  domain,
+  challenge,
+  contribution,
+  methods,
+  outcome,
+  academicHref,
+  academicLabel,
+} = Astro.props;
+---
+
+<article class="case-card" id={slug}>
+  <header class="case-card__header">
+    <p class="case-card__number">{id}</p>
+    <h2 class="heading-sm">{title}</h2>
+    <p class="case-card__domain">{domain}</p>
+  </header>
+
+  <div class="case-card__grid">
+    <section>
+      <h3>Challenge</h3>
+      <p>{challenge}</p>
+    </section>
+    <section>
+      <h3>Contribution</h3>
+      <p>{contribution}</p>
+    </section>
+    <section>
+      <h3>Methods</h3>
+      <ul>
+        {methods.map((method) => <li>{method}</li>)}
+      </ul>
+    </section>
+    <section>
+      <h3>Documented outcome</h3>
+      <p>{outcome}</p>
+      {
+        academicHref && (
+          <p class="case-card__link">
+            <a href={academicHref} rel="noopener noreferrer" target="_blank">
+              {academicLabel || 'Academic source'}
+            </a>
+          </p>
+        )
+      }
+    </section>
+  </div>
+</article>
+
+<style>
+  .case-card {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+  }
+
+  .case-card__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    color: var(--color-teal);
+    margin-bottom: 0.45rem;
+  }
+
+  .case-card__domain {
+    margin-top: 0.55rem;
+    color: var(--color-teal-dark);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .case-card__grid {
+    display: grid;
+    gap: 1.15rem;
+    margin-top: 1.35rem;
+  }
+
+  .case-card__grid h3 {
+    margin-bottom: 0.35rem;
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-midnight);
+  }
+
+  .case-card__grid p,
+  .case-card__grid li {
+    color: var(--color-muted);
+  }
+
+  .case-card__grid ul {
+    list-style: none;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .case-card__grid li {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .case-card__grid li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--color-teal);
+  }
+
+  .case-card__link {
+    margin-top: 0.75rem;
+  }
+
+  .case-card__link a {
+    color: var(--color-teal-dark);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .case-card__link a:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 800px) {
+    .case-card__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.35rem 1.75rem;
+    }
+  }
+</style>

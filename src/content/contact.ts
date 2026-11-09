@@ -19,11 +19,6 @@ export const contactDetails = {
       href: 'tel:+35797491406',
     },
     {
-      label: 'Location',
-      value: 'Nicosia, Cyprus',
-      href: null,
-    },
-    {
       label: 'LinkedIn',
       value: 'Integrae Engineering',
       href: 'https://www.linkedin.com/company/integrae-engineering/',

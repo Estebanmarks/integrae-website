@@ -6,7 +6,7 @@ export const privacyPage = {
     {
       heading: 'Who we are',
       paragraphs: [
-        'Integrae Engineering Ltd (“Integrae”, “we”, “us”) is an independent engineering and technology consultancy based in Nicosia, Cyprus. This notice explains how we handle personal information in connection with this website and professional enquiries.',
+        'Integrae Engineering Ltd (“Integrae”, “we”, “us”) is an independent engineering and technology consultancy. This notice explains how we handle personal information in connection with this website and professional enquiries.',
       ],
     },
     {
@@ -43,7 +43,7 @@ export const privacyPage = {
     {
       heading: 'Contact',
       paragraphs: [
-        'For privacy-related questions: info@integrae.com.cy. Integrae Engineering Ltd, Nicosia, Cyprus.',
+        'For privacy-related questions: info@integrae.com.cy. Integrae Engineering Ltd.',
       ],
     },
   ],

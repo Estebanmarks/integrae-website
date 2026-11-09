@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # local research / prior drafts (not published)
 reference/
+
+# local evidence / temp
+tmp/
+

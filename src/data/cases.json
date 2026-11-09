@@ -1,0 +1,98 @@
+[
+  {
+    "id": "01",
+    "slug": "regulated-biotechnology-automation",
+    "title": "Regulated Biotechnology Automation",
+    "domain": "Systems engineering | GMP | Program leadership",
+    "challenge": "Design and integrate a regulated biotechnology automation platform across hardware, software, automation and biological processes.",
+    "contribution": "Led systems development and program activities: requirements, architecture, multidisciplinary coordination, governance, and verification/validation.",
+    "methods": [
+      "Systems architecture",
+      "requirements engineering",
+      "hardware-software integration",
+      "program governance",
+      "regulated verification and validation."
+    ],
+    "outcome": "Founder CV documents a GMP-compliant integrated platform reaching industrial deployment and leadership of a multidisciplinary program involving more than 30 engineers."
+  },
+  {
+    "id": "02",
+    "slug": "digital-twins-virtual-validation",
+    "title": "Digital Twins and Virtual Validation",
+    "domain": "Simulation | Transportation | Systems architecture",
+    "challenge": "Predict and validate behaviours of complex electromechanical transportation systems before physical deployment.",
+    "contribution": "Developed digital twin methods, simulation-based virtual validation and engineering analytics to assess system architectures and product configurations.",
+    "methods": [
+      "Physics-based modelling",
+      "virtual validation",
+      "mechanical/electrical integration",
+      "operational analytics."
+    ],
+    "outcome": "Founder documents development of predictive digital twin methods and analytical tools for engineering decisions in transportation systems."
+  },
+  {
+    "id": "03",
+    "slug": "advanced-mobility-drivetrains",
+    "title": "Advanced Mobility and Drivetrain Development",
+    "domain": "Mechatronics | Powertrains | Innovation",
+    "challenge": "Solve reliability, durability and integration challenges while developing mechanical and electrified drivetrain technologies.",
+    "contribution": "Led and supported simulation, technical assessment, advanced mechatronic concepts, development roadmaps and multidisciplinary product innovation.",
+    "methods": [
+      "Mechanical simulation",
+      "drivetrain architecture",
+      "durability assessment",
+      "virtual validation",
+      "innovation management."
+    ],
+    "outcome": "Documented prior career includes propulsion and powertrain simulation, drivetrain technology development and technical innovation leadership."
+  },
+  {
+    "id": "04",
+    "slug": "advanced-materials-computational-research",
+    "title": "Advanced Materials and Computational Research",
+    "domain": "Materials science | Microtomography | Modelling",
+    "challenge": "Understand how composite microstructures evolve under stress and temperature and how that changes mechanical behaviour.",
+    "contribution": "Conducted and contributed to 3D microstructural analysis, numerical modelling and experimental research on reinforced materials.",
+    "methods": [
+      "Computational mechanics",
+      "finite element modelling",
+      "microtomography",
+      "microstructural analysis",
+      "experimental interpretation."
+    ],
+    "outcome": "Co-authored publicly indexed research including a 2008 journal article on microtomographic study of creep in reinforced aluminium alloys and a 2010 conference paper on 3D creep modelling.",
+    "academicHref": "https://doi.org/10.1016/j.msea.2007.10.016",
+    "academicLabel": "2008 journal article (DOI)"
+  },
+  {
+    "id": "05",
+    "slug": "energy-membranes-hydrogen",
+    "title": "Energy Membranes and Hydrogen Technologies",
+    "domain": "Materials | Hydrogen | Industrial scale-up",
+    "challenge": "Evaluate pathways for advanced membrane technologies to support manufacturable hydrogen and electrochemical energy systems.",
+    "contribution": "Led membrane-technology translation and industrial validation, manufacturability, system-integration and scale-up roadmap work.",
+    "methods": [
+      "Membrane engineering",
+      "technical validation",
+      "technology roadmaps",
+      "industrialization planning",
+      "energy system assessment."
+    ],
+    "outcome": "Documented prior work encompasses validation, manufacturability and scale-up roadmaps; it does NOT establish a specific commercial installation."
+  },
+  {
+    "id": "06",
+    "slug": "industrial-ai-engineering-analytics",
+    "title": "Industrial AI and Engineering Analytics",
+    "domain": "Machine learning | Coatings | Industrial processes",
+    "challenge": "Explore connections between industrial process inputs and material/coating performance using data-driven methods.",
+    "contribution": "Developed an experimental machine-learning analysis approach using TensorFlow to study relationships between process parameters and coating characteristics.",
+    "methods": [
+      "Machine learning",
+      "data analysis",
+      "engineering process evaluation",
+      "R&D methods."
+    ],
+    "outcome": "Founders career presentation reports an AI-based analytical tool; no production KPI or deployment claim is supported."
+  }
+]
