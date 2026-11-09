@@ -69,6 +69,18 @@ export const trainingOfferings = [
       'One-to-one mentoring for technical leaders',
     ],
   },
+  {
+    number: '06',
+    title: 'Project and Program Management',
+    description:
+      'Practical methods for planning, governing and delivering complex engineering and technology initiatives from concept to deployment.',
+    topics: [
+      'Project structuring, scope and work breakdown',
+      'Schedules, milestones and progress tracking',
+      'Risk, stakeholder and dependency management',
+      'Program governance and cross-functional coordination',
+    ],
+  },
 ];
 
 export const trainingFormats = {
