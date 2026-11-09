@@ -34,14 +34,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         {
           trainingOfferings.map((offering) => (
             <article class="offering">
-              <p class="offering__number">{offering.number}</p>
-              <h2 class="heading-sm">{offering.title}</h2>
-              <p class="offering__description">{offering.description}</p>
-              <ul>
-                {offering.topics.map((topic) => (
-                  <li>{topic}</li>
-                ))}
-              </ul>
+              <div class="offering__media">
+                <img
+                  src={offering.image.src}
+                  alt={offering.image.alt}
+                  width="1100"
+                  height="825"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="offering__body">
+                <p class="offering__number">{offering.number}</p>
+                <h2 class="heading-sm">{offering.title}</h2>
+                <p class="offering__description">{offering.description}</p>
+                <ul>
+                  {offering.topics.map((topic) => (
+                    <li>{topic}</li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))
         }
@@ -92,10 +104,53 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   .offering {
-    padding: clamp(1.4rem, 3vw, 2rem);
+    display: grid;
+    gap: 0;
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
     background: var(--color-white);
+    overflow: hidden;
+  }
+
+  .offering__media {
+    position: relative;
+    height: 7.5rem;
+    background: var(--color-midnight);
+    overflow: hidden;
+  }
+
+  .offering__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    opacity: 0.78;
+    filter: saturate(0.92) contrast(1.02);
+    transition:
+      opacity var(--transition),
+      transform var(--transition);
+  }
+
+  .offering:hover .offering__media img {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+
+  .offering__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    box-shadow: inset 0 -1px 0 rgba(32, 195, 188, 0.18);
+  }
+
+  .offering__body {
+    padding: clamp(1.2rem, 2.5vw, 1.6rem);
   }
 
   .offering__number {
@@ -183,6 +238,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .formats {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .offering__media {
+      height: 8.25rem;
+    }
   }
 
   @media (min-width: 980px) {
@@ -195,6 +254,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       grid-template-columns: 0.9fr 1.1fr;
       gap: 2.5rem;
       align-items: start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .offering:hover .offering__media img {
+      transform: none;
     }
   }
 </style>
